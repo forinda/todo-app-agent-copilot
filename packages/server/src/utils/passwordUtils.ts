@@ -1,4 +1,4 @@
-import  bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 import { injectable } from 'inversify';
 import { autobinded } from './autobind';
 
@@ -30,6 +30,7 @@ export class PasswordUtils {
    */
   async comparePassword(plainTextPassword: string, hashedPassword: string | null): Promise<boolean> {
     if (!hashedPassword) {
+        // console.log('No hashed password provided for comparison');
       return false;
     }
     
