@@ -32,7 +32,7 @@ export class AuthenticationService implements IAuthenticationService {
     // Find user by email
     const user = await this.userService.getUserByEmail(email);
     if (!user) {
-      throw new Error('Invalid credentials');
+      throw new Error('User account not found');
     }
     
     // Verify password using PasswordUtils

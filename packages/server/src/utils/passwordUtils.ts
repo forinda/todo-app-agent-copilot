@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcryptjs';
+import  bcrypt from 'bcryptjs';
 import { injectable } from 'inversify';
 import { autobinded } from './autobind';
 
@@ -19,7 +19,7 @@ export class PasswordUtils {
    */
   async hashPassword(password: string, saltRounds: number = this.DEFAULT_SALT_ROUNDS): Promise<string> {
     const salt = await bcrypt.genSalt(saltRounds);
-    return bcrypt.hash(password, salt);
+    return await bcrypt.hash(password, salt);
   }
 
   /**
@@ -33,7 +33,13 @@ export class PasswordUtils {
       return false;
     }
     
-    return bcrypt.compare(plainTextPassword, hashedPassword);
+    try {
+      const match = await bcrypt.compare(plainTextPassword, hashedPassword);
+      return match;
+    } catch (error) {
+      console.error('Error comparing passwords:', error);
+      return false;
+    }
   }
   
   /**
