@@ -1,0 +1,41 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Full-stack Todo application with React and Express",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "lerna run start --stream",
+    "dev": "lerna run dev --parallel --stream",
+    "dev:client": "lerna run dev --scope=@todo-app/client --stream",
+    "dev:server": "lerna run dev --scope=@todo-app/server --stream",
+    "build": "lerna run build",
+    "test": "lerna run test --stream",
+    "lint": "lerna run lint --stream",
+    "clean": "lerna clean",
+    "bootstrap": "lerna bootstrap --npmClient=pnpm",
+    "reset": "pnpm -r exec -- rm -rf node_modules && rm -rf node_modules && pnpm install",
+    "db:generate": "pnpm --filter @todo-app/server run db:generate",
+    "db:migrate": "pnpm --filter @todo-app/server run db:migrate",
+    "db:push": "pnpm --filter @todo-app/server run db:push",
+    "db:pull": "pnpm --filter @todo-app/server run db:pull",
+    "db:studio": "pnpm --filter @todo-app/server run db:studio",
+    "db:check": "pnpm --filter @todo-app/server run db:check",
+    "db:drop": "pnpm --filter @todo-app/server run db:drop"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "mongodb",
+    "todo"
+  ],
+  "author": "",
+  "license": "ISC",
+
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "lerna": "^8.2.2"
+  }
+}
